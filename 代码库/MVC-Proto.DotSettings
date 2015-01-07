@@ -1,0 +1,248 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/Description/@EntryValue">单例面板</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/Text/@EntryValue">using System.Collections.Generic;&#xD;
+using UnityEngine;&#xD;
+&#xD;
+namespace Assets.Sanxiao.UI.Panel&#xD;
+{&#xD;
+    public class $PanelName$ : BaseTempSingletonPanel&#xD;
+    {&#xD;
+        #region 单例面板通用&#xD;
+&#xD;
+        private static $PanelName$ _instance;&#xD;
+&#xD;
+        public static $PanelName$ Instance&#xD;
+        {&#xD;
+            get { return _instance; }&#xD;
+            private set&#xD;
+            {&#xD;
+                if (_instance &amp;&amp; value)&#xD;
+                {&#xD;
+                    Debug.LogError("more than 1 $PanelName$ instance now!");&#xD;
+                    Destroy(_instance.gameObject);&#xD;
+                }&#xD;
+                _instance = value;&#xD;
+            }&#xD;
+        }&#xD;
+&#xD;
+        private void Awake()&#xD;
+        {&#xD;
+            Instance = this;&#xD;
+        }&#xD;
+&#xD;
+        protected override void OnDestroy()&#xD;
+        {&#xD;
+            Instance = null;&#xD;
+            base.OnDestroy();&#xD;
+        }&#xD;
+&#xD;
+        private static GameObject Prefab&#xD;
+        {&#xD;
+            get&#xD;
+            {&#xD;
+                var go = Resources.Load("Prefabs/$PanelName$") as GameObject;&#xD;
+                return go;&#xD;
+            }&#xD;
+        }&#xD;
+&#xD;
+        public static void Load()&#xD;
+        {&#xD;
+            if (Instance)&#xD;
+            {&#xD;
+                MainRoot.FocusPanel(Instance);&#xD;
+            }&#xD;
+            else&#xD;
+            {&#xD;
+                if (!Prefab) return;&#xD;
+                MainRoot.ShowPanel(Prefab);&#xD;
+            }&#xD;
+            if (Instance) Instance.Initialize();&#xD;
+        }&#xD;
+&#xD;
+        public static void UnloadInterface()&#xD;
+        {&#xD;
+            if (Instance) Instance.OnConfirmClick();&#xD;
+        }&#xD;
+&#xD;
+        #endregion&#xD;
+&#xD;
+        public void OnHelpClick()&#xD;
+        {&#xD;
+            string text = "在这里填写帮助";&#xD;
+            if (text != null) MorlnTooltip.ShowCentered(text);&#xD;
+        }&#xD;
+    }&#xD;
+}</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/CustomProperties/=Extension/@EntryIndexedValue">cs</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/CustomProperties/=FileName/@EntryIndexedValue">NewPanel</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/CustomProperties/=ValidateFileName/@EntryIndexedValue">True</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/Applicability/=File/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/Scope/=E8F0594528C33E45BBFEC6CFE851095D/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/Scope/=E8F0594528C33E45BBFEC6CFE851095D/Type/@EntryValue">InCSharpProjectFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/Field/=PanelName/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/Field/=PanelName/Expression/@EntryValue">getFileNameWithoutExtension()</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=43FDDBD940037445809F0A62E7351EF6/Field/=PanelName/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/Description/@EntryValue">Temp Singleton Panel</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/Text/@EntryValue">using UnityEngine;&#xD;
+&#xD;
+public class $PanelName$Panel : BaseTempSingletonPanel&#xD;
+{&#xD;
+    #region 单例面板通用&#xD;
+&#xD;
+    private static $PanelName$Panel _instance;&#xD;
+&#xD;
+    public static $PanelName$Panel Instance&#xD;
+    {&#xD;
+        get { return _instance; }&#xD;
+        private set&#xD;
+        {&#xD;
+            if (_instance &amp;&amp; value)&#xD;
+            {&#xD;
+                Debug.LogError("more than 1 $PanelName$Panel instance now!");&#xD;
+                Destroy(_instance.gameObject);&#xD;
+            }&#xD;
+            _instance = value;&#xD;
+        }&#xD;
+    }&#xD;
+&#xD;
+    private void Awake()&#xD;
+    {&#xD;
+        Instance = this;&#xD;
+        Initialize();&#xD;
+    }&#xD;
+&#xD;
+    protected override void OnDestroy()&#xD;
+    {&#xD;
+        Instance = null;&#xD;
+        base.OnDestroy();&#xD;
+    }&#xD;
+&#xD;
+    private static GameObject Prefab&#xD;
+    {&#xD;
+        get&#xD;
+        {&#xD;
+            var go = Resources.Load("UI/ForegroundUI/$PanelName$Panel") as GameObject;&#xD;
+            return go;&#xD;
+        }&#xD;
+    }&#xD;
+&#xD;
+    public static void Load()&#xD;
+    {&#xD;
+        if (Instance)&#xD;
+        {&#xD;
+            MainRoot.FocusPanel(Instance);&#xD;
+        }&#xD;
+        else&#xD;
+        {&#xD;
+            if (!Prefab)&#xD;
+            {&#xD;
+                Debug.LogWarning("找不到Panel的Prefab");&#xD;
+                return;&#xD;
+            }&#xD;
+            MainRoot.ShowPanel(Prefab);&#xD;
+        }&#xD;
+    }&#xD;
+&#xD;
+    public static void UnloadInterface()&#xD;
+    {&#xD;
+        if (Instance) Instance.Unload();&#xD;
+    }&#xD;
+&#xD;
+    #endregion&#xD;
+}</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/CustomProperties/=Extension/@EntryIndexedValue">cs</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/CustomProperties/=FileName/@EntryIndexedValue">$PanelName$Panel</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/CustomProperties/=ValidateFileName/@EntryIndexedValue">True</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/Applicability/=File/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/Scope/=E8F0594528C33E45BBFEC6CFE851095D/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/Scope/=E8F0594528C33E45BBFEC6CFE851095D/Type/@EntryValue">InCSharpProjectFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/Field/=PanelName/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=17F4252E65DA0B4FBBEAE350731FF4FB/Field/=PanelName/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Description/@EntryValue">UpperPart of Sent Proto</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Text/@EntryValue">using Assets.Scripts.Communication.Proto;&#xD;
+&#xD;
+namespace Assets.Scripts.Communication.UpperPart&#xD;
+{&#xD;
+    public class $Proto$ : Proto.$Proto$, IUpperSentCmd&#xD;
+    {&#xD;
+        public $Proto$():base()&#xD;
+        {&#xD;
+        }&#xD;
+&#xD;
+        public int CmdType&#xD;
+        {&#xD;
+            get { return $CmdType$; }&#xD;
+        }&#xD;
+    }&#xD;
+}</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/CustomProperties/=Extension/@EntryIndexedValue">cs</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/CustomProperties/=FileName/@EntryIndexedValue">NewProto</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/CustomProperties/=ValidateFileName/@EntryIndexedValue">True</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Applicability/=File/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Scope/=E8F0594528C33E45BBFEC6CFE851095D/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Scope/=E8F0594528C33E45BBFEC6CFE851095D/Type/@EntryValue">InCSharpProjectFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Field/=Proto/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Field/=Proto/Expression/@EntryValue">getFileNameWithoutExtension()</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Field/=Proto/InitialRange/@EntryValue">-1</s:Int64>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Field/=Proto/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Field/=CmdType/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Field/=CmdType/Expression/@EntryValue">constant()</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=35C4FEA3F4D51B41AAA35A31C12FBA78/Field/=CmdType/Order/@EntryValue">1</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/Description/@EntryValue">UpperPart of Received Proto</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/Text/@EntryValue">namespace Assets.Scripts.Communication.UpperPart&#xD;
+{&#xD;
+    public class $Proto$ : Proto.$Proto$, IUpperReceivedCmd&#xD;
+    {&#xD;
+        public int LogLevel { get { return 2; } }&#xD;
+&#xD;
+        public void Execute()&#xD;
+        {&#xD;
+&#xD;
+        }&#xD;
+    }&#xD;
+}</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/CustomProperties/=Extension/@EntryIndexedValue">cs</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/CustomProperties/=FileName/@EntryIndexedValue">NewProto</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/CustomProperties/=ValidateFileName/@EntryIndexedValue">True</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/Applicability/=File/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/Scope/=E8F0594528C33E45BBFEC6CFE851095D/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/Scope/=E8F0594528C33E45BBFEC6CFE851095D/Type/@EntryValue">InCSharpProjectFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/Field/=Proto/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/Field/=Proto/Expression/@EntryValue">getFileNameWithoutExtension()</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31369BF12FAF57448286E8D4D7E5E0F0/Field/=Proto/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Description/@EntryValue">Unity MonoBehavior</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Text/@EntryValue">using UnityEngine;&#xD;
+
+/// &lt;summary&gt;&#xD;
+/// $Summary$&#xD;
+/// &lt;/summary&gt;&#xD;
+public class $ClassName$ : MonoBehaviour&#xD;
+{&#xD;
+&#xD;
+}</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/CustomProperties/=Extension/@EntryIndexedValue">cs</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/CustomProperties/=FileName/@EntryIndexedValue">NewMonobehaviour</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/CustomProperties/=ValidateFileName/@EntryIndexedValue">True</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Applicability/=File/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Scope/=E8F0594528C33E45BBFEC6CFE851095D/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Scope/=E8F0594528C33E45BBFEC6CFE851095D/Type/@EntryValue">InCSharpProjectFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Field/=ClassName/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Field/=ClassName/Expression/@EntryValue">getFileNameWithoutExtension()</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Field/=ClassName/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Field/=Summary/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=6F99DE4EBFDE8B46B664B05CC1F3EF61/Field/=Summary/Order/@EntryValue">1</s:Int64></wpf:ResourceDictionary>
